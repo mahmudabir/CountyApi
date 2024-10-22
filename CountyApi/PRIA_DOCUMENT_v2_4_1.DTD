@@ -1,0 +1,511 @@
+<!--	
+	===============================================================================
+	Title                			 : PRIA DOCUMENT v2.4.1 DTD
+	File Name          		 : PRIA_DOCUMENT_v2_4_1.DTD
+	ELE Version       	  	 :                               
+	Creation Date			 :  2006-08-16
+	Modification Date	 :           
+	Modification Date	: 
+	===============================================================================
+	===============================================================================
+	Copyright 2006 Property Records Industry Association (PRIA)
+	All rights reserved.
+	PRIA Copyright Notice, Disclaimer and End-User License
+	Version 1.1 November 2003 (the “PRIA License” or the “License”)
+
+This document or software (the “Work”) is published by the Property Records Industry Association (“PRIA”).  Copyright © 2006 by PRIA (collectively or individually, a “Licensor”). All rights reserved.
+
+Subject to this License, Licensor hereby grants any user of this document or software (“Licensee”) a worldwide, royalty-free, irrevocable, perpetual, non-exclusive license to reproduce the Work in copies, to prepare proprietary derivative works based upon the Work, to distribute copies of the Work to the public by sale or other transfer of ownership, and to display the Work publicly.
+
+If the Work is software published by PRIA as codes in source and binary form, the License includes the right for Licensee to distribute copies of, and use, the codes in source and binary forms, with or without modification.
+
+Any distribution of copies of the Work, or of a derivative work based upon the Work, shall reproduce verbatim the above copyright notice, the entire text of this License and the entire disclaimer below under the following header: “This document includes works developed by PRIA and some of its contributors, subject to PRIA License, Version 1.1 November 2003 published at www.pria.us/license.htm or any subsequent applicable version of such License.”  Any software application developed by Licensee based upon the Work shall include the following notice in its end user documentation and in its codes: “This software product includes software or other works developed by PRIA and some of its contributors, subject to PRIA License, Version 1.1 November 2003 published at www.pria.us/license.htm or any subsequent applicable version of such License.”  Upon publication of a derivative work, Licensee shall inform PRIA of such publication and address to PRIA a copy of Licensee’s derivative work and any relevant documentation.
+
+“PRIA” is a trade name of the “Property Records Industry Association.”  No derivative work or altered versions of a Work by Licensee may be trademarked or labeled in reference to PRIA or any of its trademark(s) or service mark(s) without PRIA’s prior written approval.  No reference to PRIA or any of its trademarks by Licensee shall imply endorsement of Licensee’s activities and products.
+
+DISCLAIMER:  THIS WORK IS PROVIDED “AS IS.” PRIA, THE COPYRIGHT HOLDER, THE AUTHORS OF THIS WORK AND ANY STANDARD -SETTING BODY CONTRIBUTORS TO THIS WORK MAKE NO REPRESENTATIONS OR WARRANTIES (i) EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE OR NON-INFRINGEMENT; (ii) THAT THE CONTENTS OF SUCH WORK ARE FREE FROM ERROR OR SUITABLE FOR ANY PURPOSE; NOR THAT IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD-PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.  IN NO EVENT WILL PRIA, THE COPYRIGHT HOLDER. ANY AUTHOR OF THIS WORK, OR THE STANDARD-SETTING BODY CONTRIBUTORS TO THIS WORK BE LIABLE TO ANY PARTY FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES FOR ANY USE OF THIS WORK, INCLUDING, WITHOUT LIMITATION, ANY LOST PROFITS, BUSINESS INTERRUPTION, LOSS OF PROGRAMS OR OTHER DATA ON YOUR INFORMATION HANDLING SYSTEM OR OTHERWISE, EVEN IF PRIA, THE COPYRIGHT HOLDER AND/OR ANY AUTHORS AND/OR ANY STANDARD-SETTING BODY CONTRIBUTORS TO THIS WORK ARE EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+	 ================================================================================
+	 -->
+<!ENTITY % use.namespaces "INCLUDE">
+<!ENTITY % no.namespaces "IGNORE">
+<!-- include the W3C XML Digital Signature DTD                            -->
+<!ENTITY % dsig-include SYSTEM "SMART_DOCUMENT_xmldsig_core_schema_V_1_02.dtd">
+%dsig-include;
+
+<!ELEMENT PRIA_DOCUMENT (GRANTOR+, GRANTEE+, PROPERTY*, PARTIES, EXECUTION, MORTGAGE_CONSIDERATION?, CONSIDERATION*, RECORDABLE_DOCUMENT*, SIGNATORY*, NOTARY*, RECORDING_ENDORSEMENT?, EMBEDDED_FILE*)>
+<!ATTLIST PRIA_DOCUMENT
+	_ID ID #IMPLIED
+	_Code CDATA #IMPLIED
+	DocumentNonRecordableIndicator (Y | N) #IMPLIED
+	PRIAVersionIdentifier CDATA #IMPLIED
+	_UniqueIdentifier CDATA #IMPLIED
+	RecordableDocumentSequenceIdentifier CDATA #IMPLIED
+	RecordableDocumentType (AbstractOfJudgment | AffadavitOfDeath | Assignment | AssignmentOfMortgage | AssignmentOfDeedOfTrust | BargainAndSaleDeed | BlanketAssignment | Deed | DeedOfTrust | FederalTaxLien | Judgment | ModificationAgreementOrConsolidationAgreement | Mortgage | Other | PartialSatisfactionOfLien | PowerOfAttorney | QuitClaimDeed | Reconveyance | ReleaseOfLien | ReleaseOfFederalTaxLien | ReleaseOfStateTaxLien | ReleaseOfTreasurersTaxLien | SatisfactionOfLien | SatisfactionOfMortgage | SecurityInstrument | SignatureAffidavit | StateTaxLien | SubordinateLienAgreement | SubstitutionOfTrustee | TreasurersTaxLien | WarrantyDeed) #IMPLIED
+	RecordableDocumentTypeOtherDescription CDATA #IMPLIED
+>
+<!ELEMENT GRANTOR (_ALIAS*)>
+<!ATTLIST GRANTOR
+	_ID ID #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	_FirstName CDATA #IMPLIED
+	_MiddleName CDATA #IMPLIED
+	_LastName CDATA #IMPLIED
+	_NameSuffix CDATA #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_CapacityDescription CDATA #IMPLIED
+	MaritalStatusType (Married | NotProvided | Divorced | Separated | Unknown | Unmarried) #IMPLIED
+	NonPersonEntityIndicator (Y | N) #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT _ALIAS EMPTY>
+<!ATTLIST _ALIAS
+	_ID ID #IMPLIED
+	_FirstName CDATA #IMPLIED
+	_MiddleName CDATA #IMPLIED
+	_LastName CDATA #IMPLIED
+	_NameSuffix CDATA #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	AliasType (FormerlyKnownAs | NowKnownAs | AlsoKnownAs) #IMPLIED
+	AliasTypeOtherDescription CDATA #IMPLIED
+>
+<!ELEMENT GRANTEE (_ALIAS*)>
+<!ATTLIST GRANTEE
+	_ID ID #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	_FirstName CDATA #IMPLIED
+	_MiddleName CDATA #IMPLIED
+	_LastName CDATA #IMPLIED
+	_NameSuffix CDATA #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_CapacityDescription CDATA #IMPLIED
+	MaritalStatusType (Married | NotProvided | Divorced | Separated | Unknown | Unmarried) #IMPLIED
+	NonPersonEntityIndicator (Y | N) #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT PROPERTY (_IDENTIFICATION?, PARSED_STREET_ADDRESS?, _LEGAL_DESCRIPTION*)>
+<!ATTLIST PROPERTY
+	_ID ID #IMPLIED
+	MISMOVersionId CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	BuildingStatusType (Complete | Existing | Other | Proposed | SubjectToAlteration | SubjectToAlterationImprovementRepairAndRehabilitation | SubstantiallyRehabilitated | UnderConstruction | Incomplete) #IMPLIED
+	LandUseType (Residential | Income | Commercial | Industrial | Vacant | Agricultural | PublicAndSemipublic | Recreational | TransportationAndUtility | Other) #IMPLIED
+	LandUseTypeOtherDescription CDATA #IMPLIED
+	LandUseComment CDATA #IMPLIED
+	_CurrentOccupancyType (Abandoned | AdverseOccupied | OwnerOccupied | RemovedOrDestroyed | TennantOccupied | Unknown | Vacant) #IMPLIED
+	_CurrentOccupantUnparsedName CDATA #IMPLIED
+	_GatedCommunityIndicator (Y | N) #IMPLIED
+	_RightsType (CommunityProperty | FeeSimple | JointTenants | Leasehold | Other | TenantsInCommon | Unassigned) #IMPLIED
+	_TaxDelinquentIndicator (Y | N) #IMPLIED
+	_TitleCategoryType (Church | CommercialNonResidential | Condominium | CondominiumOverFourStories | Cooperative | Farm | HomeAndBusinessCombined | ManufacturedMobileHome | MixedUseResidential | MultifamilyMoreThanFourUnits | Other | SingleFamily | Townhouse | TwoToFourUnitProperty | VacantLand) #IMPLIED
+	_TitleCategoryTypeOtherDescription CDATA #IMPLIED
+>
+<!ELEMENT _IDENTIFICATION EMPTY>
+<!ATTLIST _IDENTIFICATION
+	_ID ID #IMPLIED
+	CountyFIPSCode CDATA #IMPLIED
+	StateFIPSCode CDATA #IMPLIED
+	CensusTractIdentifier CDATA #IMPLIED
+	MSAIdentifier CDATA #IMPLIED
+	MunicipalityName CDATA #IMPLIED
+	SchoolDistrictName CDATA #IMPLIED
+	LongitudeNumber CDATA #IMPLIED
+	LatitudeNumber CDATA #IMPLIED
+	MapReferenceIdentifier CDATA #IMPLIED
+	MapReferenceSecondIdentifier CDATA #IMPLIED
+	AssessorsParcelIdentifier CDATA #IMPLIED
+	AssessorsSecondParcelIdentifier CDATA #IMPLIED
+	AssessorsParcelIdentiferSequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT PARSED_STREET_ADDRESS EMPTY>
+<!ATTLIST PARSED_STREET_ADDRESS
+	_ID ID #IMPLIED
+	_StreetName CDATA #IMPLIED
+	_DirectionPrefix CDATA #IMPLIED
+	_DirectionSuffix CDATA #IMPLIED
+	_StreetSuffix CDATA #IMPLIED
+	_HouseNumber CDATA #IMPLIED
+	_BuildingNumber CDATA #IMPLIED
+	_PostOfficeBox CDATA #IMPLIED
+	_MilitaryAPO_FPO CDATA #IMPLIED
+	_ApartmentOrUnit CDATA #IMPLIED
+	_RuralRoute CDATA #IMPLIED
+	PlusFourPostalCode CDATA #IMPLIED
+	SitusCarrierRouteIdentifier CDATA #IMPLIED
+>
+<!ELEMENT _LEGAL_DESCRIPTION (PARCEL_IDENTIFICATION, PLATTED_LAND?, UNPLATTED_LAND?)>
+<!ATTLIST _LEGAL_DESCRIPTION
+	_ID ID #IMPLIED
+	_TextDescription CDATA #IMPLIED
+	_Type (LongLegal | MetesAndBounds | Other | ShortLegal) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+>
+<!ELEMENT PARCEL_IDENTIFICATION EMPTY>
+<!ATTLIST PARCEL_IDENTIFICATION
+	_ID ID #IMPLIED
+	_Type (ParcelIdentificationNumber | TaxMapIdentifier | TaxParcelIdentifier | AssessorUnformattedIdentifier | TorrensCertificateIdentifier | Other) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+	_Identifier CDATA #IMPLIED
+>
+<!ELEMENT PLATTED_LAND EMPTY>
+<!ATTLIST PLATTED_LAND
+	_ID ID #IMPLIED
+	_AdditionalParcelIdentifier CDATA #IMPLIED
+	_AdditionalParcelDescription CDATA #IMPLIED
+	_AppurtenanceDescription CDATA #IMPLIED
+	_AppurtenanceIdentifier CDATA #IMPLIED
+	_BuildingIdentifier CDATA #IMPLIED
+	_PlatCodeIdentifier CDATA #IMPLIED
+	_PlatInstrumentIdentifier CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_Type (Subdivision | Condominium | Timeshare | Other) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+	_UnitNumberIdentifier CDATA #IMPLIED
+	PropertyLotIdentifier CDATA #IMPLIED
+	PropertyBlockIdentifier CDATA #IMPLIED
+	PropertySectionIdentifier CDATA #IMPLIED
+	PropertySubdivisionIdentifier CDATA #IMPLIED
+	PropertyTractIdentifier CDATA #IMPLIED
+	PlatName CDATA #IMPLIED
+	RecordedDocumentBook CDATA #IMPLIED
+	RecordedDocumentPage CDATA #IMPLIED
+>
+<!ELEMENT UNPLATTED_LAND EMPTY>
+<!ATTLIST UNPLATTED_LAND
+	_ID ID #IMPLIED
+	_AbstractNumberIdentifier CDATA #IMPLIED
+	_BaseIdentifier CDATA #IMPLIED
+	_LandGrantIdentifier CDATA #IMPLIED
+	_MeridianIdentifier CDATA #IMPLIED
+	_MetesAndBoundsRemainingDescription CDATA #IMPLIED
+	_QuarterSectionIdentifier CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_DescriptionType (GovernmentSurvey | LandGrant | MetesAndBounds | NativeAmericanLandIdentifier | RancheroIdentifier | TownshipIdentifier | Other) #IMPLIED
+	_DescriptionTypeOtherDescription CDATA #IMPLIED
+	PropertyRangeIdentifier CDATA #IMPLIED
+	PropertySectionIdentifier CDATA #IMPLIED
+	PropertyTownshipIdentifier CDATA #IMPLIED
+>
+<!ELEMENT PARTIES (_RETURN_TO_PARTY+, _PREPARED_BY_PARTY*, TAXABLE_PARTY*, BILL_TO_PARTY*, WITNESS*)>
+<!ATTLIST PARTIES
+	_ID ID #IMPLIED
+>
+<!ELEMENT _RETURN_TO_PARTY (PREFERRED_RESPONSE*, NON_PERSON_ENTITY_DETAIL, CONTACT_DETAIL)>
+<!ATTLIST _RETURN_TO_PARTY
+	_ID ID #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	_CountryCode CDATA #IMPLIED
+	NonPersonEntityIndicator (Y | N) #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_TitleDescription CDATA #IMPLIED
+>
+<!ELEMENT PREFERRED_RESPONSE EMPTY>
+<!ATTLIST PREFERRED_RESPONSE
+	_ID ID #IMPLIED
+	_Format (Other | PCL | PDF | Text | TIFF | XML) #IMPLIED
+	_Method (Fax | File | FTP | HTTP | HTTPS | Mail | MessageQueue | Other | SMTP | VAN) #IMPLIED
+	_Destination CDATA #IMPLIED
+	_FormatOtherDescription CDATA #IMPLIED
+	_MethodOther CDATA #IMPLIED
+	_UseEmbeddedFileIndicator (Y | N) #IMPLIED
+	MIMEType CDATA #IMPLIED
+	_VersionIdentifier CDATA #IMPLIED
+>
+<!ELEMENT NON_PERSON_ENTITY_DETAIL (AUTHORIZED_REPRESENTATIVE*)>
+<!ATTLIST NON_PERSON_ENTITY_DETAIL
+	_ID ID #IMPLIED
+	_OrganizationType (Corporation | JointVenture | LimitedLiabilityCompany | LimitedPartnership | NonProfitCorporation | Other | Partnership | SoleProprietorship | Trust) #IMPLIED
+	_OrganizationTypeOtherDescription CDATA #IMPLIED
+	_OrganizedUnderTheLawsOfJurisdictionName CDATA #IMPLIED
+	_SuccessorClauseTextDescription CDATA #IMPLIED
+	_TaxIdentificationNumberIdentifier CDATA #IMPLIED
+>
+<!ELEMENT AUTHORIZED_REPRESENTATIVE (CONTACT_DETAIL?)>
+<!ATTLIST AUTHORIZED_REPRESENTATIVE
+	_ID ID #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_TitleDescription CDATA #IMPLIED
+	AuthorizedToSignIndicator (Y | N) #IMPLIED
+>
+<!ELEMENT CONTACT_DETAIL (CONTACT_POINT*)>
+<!ATTLIST CONTACT_DETAIL
+	_ID ID #IMPLIED
+	_Name CDATA #IMPLIED
+>
+<!ELEMENT CONTACT_POINT EMPTY>
+<!ATTLIST CONTACT_POINT
+	_ID ID #IMPLIED
+	_PreferenceIndicator (Y | N) #IMPLIED
+	_RoleType (Home | Mobile | Other | Work) #IMPLIED
+	_Type (Email | Fax | Other | Phone) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+	_Value CDATA #IMPLIED
+>
+<!ELEMENT _PREPARED_BY_PARTY (PREFERRED_RESPONSE*, NON_PERSON_ENTITY_DETAIL, CONTACT_DETAIL)>
+<!ATTLIST _PREPARED_BY_PARTY
+	_ID ID #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	_CountryCode CDATA #IMPLIED
+	NonPersonEntityIndicator (Y | N) #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_TitleDescription CDATA #IMPLIED
+>
+<!ELEMENT TAXABLE_PARTY (PREFERRED_RESPONSE*, NON_PERSON_ENTITY_DETAIL, CONTACT_DETAIL)>
+<!ATTLIST TAXABLE_PARTY
+	_ID ID #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	_CountryCode CDATA #IMPLIED
+	NonPersonEntityIndicator (Y | N) #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_TitleDescription CDATA #IMPLIED
+>
+<!ELEMENT BILL_TO_PARTY (PREFERRED_RESPONSE*, NON_PERSON_ENTITY_DETAIL, CONTACT_DETAIL)>
+<!ATTLIST BILL_TO_PARTY
+	_ID ID #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	_CountryCode CDATA #IMPLIED
+	NonPersonEntityIndicator (Y | N) #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_TitleDescription CDATA #IMPLIED
+>
+<!ELEMENT WITNESS EMPTY>
+<!ATTLIST WITNESS
+	_ID ID #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT EXECUTION EMPTY>
+<!ATTLIST EXECUTION
+	_ID ID #IMPLIED
+	_Date CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_County CDATA #IMPLIED
+	_State CDATA #IMPLIED
+>
+<!ELEMENT MORTGAGE_CONSIDERATION EMPTY>
+<!ATTLIST MORTGAGE_CONSIDERATION
+	_ID ID #IMPLIED
+	HELOCInitialAdvanceAmount CDATA #IMPLIED
+	OriginalLoanAmount CDATA #IMPLIED
+>
+<!ELEMENT CONSIDERATION EMPTY>
+<!ATTLIST CONSIDERATION
+	_ID ID #IMPLIED
+	_Amount CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_Type (SalePrice | Judgment | Lien | AttorneysFee | Other) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+>
+<!ELEMENT RECORDABLE_DOCUMENT (_ASSOCIATED_DOCUMENT*)>
+<!ATTLIST RECORDABLE_DOCUMENT
+	_ID ID #IMPLIED
+>
+<!ELEMENT _ASSOCIATED_DOCUMENT EMPTY>
+<!ATTLIST _ASSOCIATED_DOCUMENT
+	_ID ID #IMPLIED
+	_BookNumber CDATA #IMPLIED
+	_BookType (Plat | Deed | Mortgage | Maps | Other) #IMPLIED
+	_BookTypeOtherDescription CDATA #IMPLIED
+	_Code CDATA #IMPLIED
+	_CountyOfRecordationName CDATA #IMPLIED
+	_Title CDATA #IMPLIED
+	_InstrumentNumber CDATA #IMPLIED
+	_Number CDATA #IMPLIED
+	_OfficeOfRecordationName CDATA #IMPLIED
+	_PageNumber CDATA #IMPLIED
+	_RecordingDate CDATA #IMPLIED
+	_RecordingJurisdictionName CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_StateOfRecordationName CDATA #IMPLIED
+	_Type (AbstractofJudgment | AffidavitofDeath | Assignment | AssignmentofDeedofTrust | AssignmentOfMortgage | BargainAndSaleDeed | BlanketAssignment | Deed | DeedOfTrust | FederalTaxLien | Judgment | ModificationAgreementOrConsolidationAgreements | Mortgage | Other | PartialSatisfactionOfLien | PowerofAttorney | QuitClaimDeed | Reconveyance | ReleaseofFederalTaxLien | ReleaseOfLien | ReleaseofStateTaxLien | SatisfactionOfLien | SatisfactionofMortgage | StateTaxLien | SecurityInstrument | SignatureAffidavit | SubordinateLienAgreement | SubstitutionofTrustee | TreasurersTaxLien | WarrantyDeed) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+	_VolumeNumber CDATA #IMPLIED
+>
+<!ELEMENT SIGNATORY (ELECTRONIC_SIGNATURE)>
+<!ATTLIST SIGNATORY
+	_ID ID #IMPLIED
+	_FirstName CDATA #IMPLIED
+	_MiddleName CDATA #IMPLIED
+	_LastName CDATA #IMPLIED
+	_NameSuffix CDATA #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+	_SigningCapacityDescription CDATA #IMPLIED
+	_OrganizationName CDATA #IMPLIED
+	_OrganizationPositionDescription CDATA #IMPLIED
+	_SignatureDate CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_SignatureTimeStamp CDATA #IMPLIED
+>
+<!ELEMENT ELECTRONIC_SIGNATURE (TEXT_SIGNATURE?, EMBEDDED_SIGNATURE_FILE?, EXTERNAL_SIGNATURE_FILE?, Signature*, OTHER_SIGNATURE*)>
+<!ATTLIST ELECTRONIC_SIGNATURE
+	ID ID #IMPLIED
+	ElectronicSignatureType (Digital | EncodedEmbedded | EncodedExternal | Other) #IMPLIED
+	ElectronicSignatureTypeOtherDescription CDATA #IMPLIED
+>
+<!ELEMENT TEXT_SIGNATURE EMPTY>
+<!ATTLIST TEXT_SIGNATURE
+	ID ID #IMPLIED
+>
+<!ELEMENT EMBEDDED_SIGNATURE_FILE (DOCUMENT?)>
+<!ATTLIST EMBEDDED_SIGNATURE_FILE
+	ID CDATA #IMPLIED
+	EmbeddedFileType CDATA #IMPLIED
+	EmbeddedFileVersion CDATA #IMPLIED
+	EmbeddedFileName CDATA #IMPLIED
+	FileEncodingType CDATA #IMPLIED
+	FileDescription CDATA #IMPLIED
+	MIMEType CDATA #IMPLIED
+	PageCount CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT EMBEDDED_FILE (DOCUMENT?)>
+<!ATTLIST EMBEDDED_FILE
+	ID CDATA #IMPLIED
+	EmbeddedFileType CDATA #IMPLIED
+	EmbeddedFileVersion CDATA #IMPLIED
+	EmbeddedFileName CDATA #IMPLIED
+	FileEncodingType CDATA #IMPLIED
+	FileDescription CDATA #IMPLIED
+	MIMEType CDATA #IMPLIED
+>
+<!ELEMENT DOCUMENT ANY>
+
+<!ELEMENT EXTERNAL_SIGNATURE_FILE EMPTY>
+<!ATTLIST EXTERNAL_SIGNATURE_FILE
+	ID CDATA #IMPLIED
+	FileEncodingType CDATA #IMPLIED
+	FileDescription CDATA #IMPLIED
+	MIMEType CDATA #IMPLIED
+	URI CDATA #IMPLIED
+	PageCount CDATA #IMPLIED
+	SignatureSequenceIdentifier CDATA #IMPLIED
+>
+
+<!ELEMENT OTHER_SIGNATURE ANY>
+<!ATTLIST OTHER_SIGNATURE
+	ID CDATA #IMPLIED
+>
+
+<!ELEMENT NOTARY (_CERTIFICATE*, SIGNATORY+)>
+<!ATTLIST NOTARY
+	_ID ID #IMPLIED
+	_CommissionBondNumberIdentifier CDATA #IMPLIED
+	_CommissionNumberIdentifier CDATA #IMPLIED
+	_CommissionExpirationDate CDATA #IMPLIED
+	_CommissionState CDATA #IMPLIED
+	_CommissionCounty CDATA #IMPLIED
+	_CommissionCity CDATA #IMPLIED
+	_PRIAVersionIdentifier CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_TitleDescription CDATA #IMPLIED
+	_UnparsedName CDATA #IMPLIED
+>
+<!ELEMENT _CERTIFICATE (_SIGNER_IDENTIFICATION+)>
+<!ATTLIST _CERTIFICATE
+	_ID ID #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_SignerFirstName CDATA #IMPLIED
+	_SignerMiddleName CDATA #IMPLIED
+	_SignerLastName CDATA #IMPLIED
+	_SignerNameSuffix CDATA #IMPLIED
+	_SignerUnparsedName CDATA #IMPLIED
+	_SignerCompanyName CDATA #IMPLIED
+	_SignerTitleDescription CDATA #IMPLIED
+	_SigningDate CDATA #IMPLIED
+	_SigningCounty CDATA #IMPLIED
+	_SigningState CDATA #IMPLIED
+>
+
+<!ELEMENT _SIGNER_IDENTIFICATION EMPTY>
+<!ATTLIST _SIGNER_IDENTIFICATION
+	_ID ID #IMPLIED
+	_Description CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+	_Type (ProvidedIdentification | PersonallyKnown) #IMPLIED
+>
+<!ELEMENT RECORDING_ENDORSEMENT (_VOLUME_PAGE*, _FEES?, _EXEMPTIONS*, SIGNATORY?)>
+<!ATTLIST RECORDING_ENDORSEMENT
+	_ID ID #IMPLIED
+	_Identifier CDATA #IMPLIED
+	_OfficersName CDATA #IMPLIED
+	_InstrumentNumberIdentifier CDATA #IMPLIED
+	_PagesCount CDATA #IMPLIED
+	_Volume CDATA #IMPLIED
+	_VolumeType (Plat | Deed | Mortgage | Maps | Other) #IMPLIED
+	_VolumeTypeOtherDescription CDATA #IMPLIED
+	_RecordedDateTime CDATA #IMPLIED
+	_RecordedCounty CDATA #IMPLIED
+	_RecordedState CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT _VOLUME_PAGE EMPTY>
+<!ATTLIST _VOLUME_PAGE
+	_ID ID #IMPLIED
+	_NumberIdentifier CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT _FEES (_RECORDING_FEE*)>
+<!ATTLIST _FEES
+	_ID ID #IMPLIED
+	_TotalAmount CDATA #IMPLIED
+>
+<!ELEMENT _RECORDING_FEE EMPTY>
+<!ATTLIST _RECORDING_FEE
+	_ID ID #IMPLIED
+	RecordingEndorsementFeeAmount CDATA #IMPLIED
+	RecordingEndorsementFeeDescription CDATA #IMPLIED
+	RecordingEndorsementFeeSequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT _EXEMPTIONS EMPTY>
+<!ATTLIST _EXEMPTIONS
+	_ID ID #IMPLIED
+	_Amount CDATA #IMPLIED
+	_Description CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>

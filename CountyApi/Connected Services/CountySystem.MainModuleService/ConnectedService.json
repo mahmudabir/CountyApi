@@ -1,0 +1,18 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://erecordqa.mypalmbeachclerk.com/MainModuleService.svc"
+    ],
+    "collectionTypes": [
+      "System.Collections.Generic.Dictionary`2",
+      "System.Collections.Generic.List`1"
+    ],
+    "enableDataBinding": true,
+    "messageContract": true,
+    "namespaceMappings": [
+      "*, CountySystem.MainModuleService"
+    ],
+    "targetFramework": "net8.0",
+    "typeReuseMode": "All"
+  }
+}
