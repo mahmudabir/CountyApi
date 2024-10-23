@@ -3,10 +3,9 @@
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System.Text;
-using System.Xml.Schema;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
-using System.Text.RegularExpressions;
 
 namespace CountyApi;
 class PdfToXmlConverter
@@ -24,151 +23,147 @@ class PdfToXmlConverter
         return text.ToString();
     }
 
-    public string SerializeToXml(PRIA_DOCUMENT priaDocument)
+    public string SerializeToXml<T>(T document)
     {
-        XmlSerializer xmlSerializer = new XmlSerializer(typeof(PRIA_DOCUMENT));
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
         using (StringWriter stringWriter = new StringWriter())
         {
-            xmlSerializer.Serialize(stringWriter, priaDocument);
+            xmlSerializer.Serialize(stringWriter, document);
             return stringWriter.ToString();
         }
     }
 
-    public bool ValidateXml(string xml, string xsdPath)
+    public bool ValidateXml(string xml)
     {
-        return true;
-
         XmlSchemaSet schema = new XmlSchemaSet();
-        schema.Add("", xsdPath);
+        schema.Add("", @"C:\Users\acer\Downloads\PRIA_REQUEST_v2_4_2\PRIA_DOCUMENT_v2_4_1.XSD");
+        schema.Add("", @"C:\Users\acer\Downloads\PRIA_REQUEST_v2_4_2\MISMO_SIGNATURE_Type.xsd");
+        schema.Add("http://www.w3.org/2000/09/xmldsig#", @"C:\Users\acer\Downloads\PRIA_REQUEST_v2_4_2\SMART_DOCUMENT_xmldsig_core_schema_V_1_02.xsd");
 
         XmlReaderSettings settings = new XmlReaderSettings();
         settings.ValidationType = ValidationType.Schema;
         settings.Schemas = schema;
-        settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
 
-        XmlReader reader = XmlReader.Create(new StringReader(xml), settings);
+        bool isValid = true;  // This will track if validation passed or failed
+
+        // Capture schema validation errors
+        settings.ValidationEventHandler += (sender, e) =>
+        {
+            isValid = false;  // Mark as invalid on the first error
+            Console.WriteLine($"Validation Error: {e.Message}\n");
+        };
+
         try
         {
-            while (reader.Read()) { }
-            return true; // XML is valid
+            using (XmlReader reader = XmlReader.Create(new StringReader(xml), settings))
+            {
+                while (reader.Read()) { }  // Read through the XML
+            }
         }
-        catch (XmlException)
+        catch (XmlException ex)
         {
-            return false; // XML is invalid
+            Console.WriteLine($"XML Exception: {ex.Message}");
+            return false;  // Invalid XML syntax
         }
+
+        return isValid;  // Returns true if valid, false if validation failed
     }
 
-    private void ValidationCallBack(object sender, ValidationEventArgs args)
-    {
-        Console.WriteLine($"Validation Error: {args.Message}");
-    }
 
-    public string GenerateXmlFromPdf(string pdfPath, string xsdPath)
+    public string GenerateXmlFromPdf()
     {
         // Step 1: Extract text from PDF
+        string pdfPath = "c:\\sample.pdf";
         string pdfText = ExtractTextFromPdf(pdfPath);
 
-        Console.WriteLine("pdfText: " + pdfText + "\n");
         File.WriteAllText("..\\..\\..\\pdfText.xml", pdfText);
 
         // Step 2: Populate PRIA_DOCUMENT (mapping the extracted data to the class)
-        PRIA_DOCUMENT priaDocument = new PRIA_DOCUMENT
-        {
-            Grantors = new List<GRANTOR>
-        {
-            new GRANTOR { Name = ExtractGrantorNameFromPdfText(pdfText) }
-        },
-            Grantees = new List<GRANTEE>
-        {
-            new GRANTEE { Name = ExtractGranteeNameFromPdfText(pdfText) }
-        },
-            Properties = new List<PROPERTY>
-        {
-            new PROPERTY { Address = ExtractPropertyAddressFromPdfText(pdfText) }
-        },
-            Execution = new EXECUTION
-            {
-                ExecutionDate = DateTime.Now // You can extract actual date from the PDF if needed
-            }
-        };
+        var priaDocument = GeneratePriaDocument();
 
         // Step 3: Serialize to XML
         string xmlString = SerializeToXml(priaDocument);
 
-        File.WriteAllText("..\\..\\..\\xmlString.xml", xmlString);
-
         // Step 4: Validate XML
-        bool isValid = ValidateXml(xmlString, xsdPath);
+        bool isValid = ValidateXml(xmlString);
         if (isValid)
         {
             Console.WriteLine("Generated XML is valid.");
             Console.WriteLine(xmlString);
+            File.WriteAllText("..\\..\\..\\xmlString.xml", xmlString);
         }
         else
         {
             Console.WriteLine("Generated XML is invalid.");
+            File.Delete("..\\..\\..\\xmlString.xml");
+            //throw new Exception("Generated XML is invalid.");
+
         }
 
         return xmlString;
     }
 
-
-    public string ExtractGrantorNameFromPdfText(string pdfText)
+    private PRIA_DOCUMENT_Type GeneratePriaDocument()
     {
-        // Define a pattern to match the Grantor's name
-        // Assuming Grantor is written as "GRANTOR: John Doe" in the PDF
-        string pattern = @"GRANTOR:\s*(.*)";
-
-        // Search for the pattern in the extracted PDF text
-        Match match = Regex.Match(pdfText, pattern, RegexOptions.IgnoreCase);
-
-        // If a match is found, return the grantor's name
-        if (match.Success)
+        return new PRIA_DOCUMENT_Type
         {
-            return match.Groups[1].Value.Trim(); // Extract the Grantor name
-        }
+            GRANTEE =
+            [
+                new()
+                {
+                    _FirstName = "John",
+                    _LastName = "Doe"
+                }
+            ],
+            GRANTOR =
+            [
+                new()
+                {
+                    _FirstName = "Jane",
+                    _LastName = "Doe"
+                }
+            ],
+            PROPERTY =
+            [
+                new()
+                {
+                    _StreetAddress = "123 Main St",
+                    _City = "Somewhere",
+                    _State = "FL",
+                    _PostalCode = "12345"
+                }
+            ],
+            PARTIES = new()
+            {
+                //_ID = "zxcvbnm",
+                _RETURN_TO_PARTY = [
+                    new()
+                    {
+                        _ID="qweqweqwew",
+                        PREFERRED_RESPONSE = [
+                            new()
+                            {
+                                _ID="eijsijisrojbgoigsjbojs",
+                                
+                            }
+                        ],
+                        NON_PERSON_ENTITY_DETAIL = new() 
+                        {
+                            _ID = "asdaddwefregb"
+                        },
+                        CONTACT_DETAIL = new() 
+                        {
+                            _ID = "asdaddwefregbasdasdas",
+                            _Name = "asdasdreg"
+                        }
 
-        // Return a default value or throw an exception if needed
-        return "Grantor Name Not Found";
+                    }
+                ]
+            },
+            EXECUTION = new()
+            {
+                _ID = "asdaddwasdadasdefregb"
+            }
+        };
     }
-
-    public string ExtractGranteeNameFromPdfText(string pdfText)
-    {
-        // Define a pattern to match the Grantee's name
-        // Assuming Grantee is written as "GRANTEE: Jane Doe" in the PDF
-        string pattern = @"GRANTEE:\s*(.*)";
-
-        // Search for the pattern in the extracted PDF text
-        Match match = Regex.Match(pdfText, pattern, RegexOptions.IgnoreCase);
-
-        // If a match is found, return the grantee's name
-        if (match.Success)
-        {
-            return match.Groups[1].Value.Trim(); // Extract the Grantee name
-        }
-
-        // Return a default value or throw an exception if needed
-        return "Grantee Name Not Found";
-    }
-
-    public string ExtractPropertyAddressFromPdfText(string pdfText)
-    {
-        // Define a pattern to match the Grantee's name
-        // Assuming Grantee is written as "GRANTEE: Jane Doe" in the PDF
-        string pattern = @"GRANTEE:\s*(.*)";
-
-        // Search for the pattern in the extracted PDF text
-        Match match = Regex.Match(pdfText, pattern, RegexOptions.IgnoreCase);
-
-        // If a match is found, return the grantee's name
-        if (match.Success)
-        {
-            return match.Groups[1].Value.Trim(); // Extract the Grantee name
-        }
-
-        // Return a default value or throw an exception if needed
-        return "Property Address Not Found";
-    }
-
-
 }
