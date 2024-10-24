@@ -1,6 +1,4 @@
-﻿
-
-using iTextSharp.text.pdf;
+﻿using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System.Text;
 using System.Xml;
