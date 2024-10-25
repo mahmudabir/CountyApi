@@ -21,8 +21,8 @@ public class CountyController(PriaService priaService, CountyService countyServi
         return Ok(xmlString);
     }
 
-    [HttpPost("validate-xml")]
-    public async Task<IActionResult> ValidatePriaStandardXml(IFormFile file)
+    [HttpPost("validate-xml-file")]
+    public async Task<IActionResult> ValidatePriaStandardXmlFile(IFormFile file)
     {
         string xmlString;
         using (var reader = new StreamReader(file.OpenReadStream()))
@@ -47,4 +47,27 @@ public class CountyController(PriaService priaService, CountyService countyServi
             Message = message
         });
     }
+    
+    
+    [HttpPost("validate-xml-string")]
+    public async Task<IActionResult> ValidatePriaStandardXmlString(string xmlString)
+    {
+        string message = "Document is valid";
+        bool isValid = false;
+        try
+        {
+            isValid = priaService.ValidateXml(xmlString);
+        }
+        catch (Exception e)
+        {
+            message = e.Message;
+        }
+
+        return Ok(new
+        {
+            IsValid = isValid,
+            Message = message
+        });
+    }
+
 }
