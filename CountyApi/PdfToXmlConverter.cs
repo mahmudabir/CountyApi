@@ -1,6 +1,5 @@
-﻿using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.parser;
-using System.Text;
+﻿using iText.Pdfa;
+
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -8,19 +7,6 @@ using System.Xml.Serialization;
 namespace CountyApi;
 class PdfToXmlConverter
 {
-    public string ExtractTextFromPdf(string pdfFilePath)
-    {
-        StringBuilder text = new StringBuilder();
-        using (PdfReader reader = new PdfReader(pdfFilePath))
-        {
-            for (int i = 1; i <= reader.NumberOfPages; i++)
-            {
-                text.Append(PdfTextExtractor.GetTextFromPage(reader, i));
-            }
-        }
-        return text.ToString();
-    }
-
     public string SerializeToXml<T>(T document)
     {
         XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
@@ -33,10 +19,10 @@ class PdfToXmlConverter
 
     public bool ValidateXml(string xml)
     {
-        XmlSchemaSet schema = new XmlSchemaSet();
-        schema.Add("", @"C:\Users\acer\Downloads\PRIA_REQUEST_v2_4_2\PRIA_DOCUMENT_v2_4_1.XSD");
-        schema.Add("", @"C:\Users\acer\Downloads\PRIA_REQUEST_v2_4_2\MISMO_SIGNATURE_Type.xsd");
-        schema.Add("http://www.w3.org/2000/09/xmldsig#", @"C:\Users\acer\Downloads\PRIA_REQUEST_v2_4_2\SMART_DOCUMENT_xmldsig_core_schema_V_1_02.xsd");
+        XmlSchemaSet schema = new XmlSchemaSet();//C:\Users\abir\Desktop\Projects\dotnet\CountyApi\CountyApi\PRIA_DOCUMENT_v2_4_1.XSD
+        schema.Add("", @"..\..\..\PRIA_DOCUMENT_v2_4_1.XSD");
+        schema.Add("", @"..\..\..\MISMO_SIGNATURE_Type.xsd");
+        schema.Add("http://www.w3.org/2000/09/xmldsig#", @"..\..\..\SMART_DOCUMENT_xmldsig_core_schema_V_1_02.xsd");
 
         XmlReaderSettings settings = new XmlReaderSettings();
         settings.ValidationType = ValidationType.Schema;
@@ -68,21 +54,15 @@ class PdfToXmlConverter
     }
 
 
-    public string GenerateXmlFromPdf()
+    public string GenerateXmlString()
     {
-        // Step 1: Extract text from PDF
-        string pdfPath = "c:\\sample.pdf";
-        string pdfText = ExtractTextFromPdf(pdfPath);
-
-        File.WriteAllText("..\\..\\..\\pdfText.xml", pdfText);
-
-        // Step 2: Populate PRIA_DOCUMENT (mapping the extracted data to the class)
+        // Step 1: Populate PRIA_DOCUMENT (mapping the extracted data to the class)
         var priaDocument = GeneratePriaDocument();
 
-        // Step 3: Serialize to XML
+        // Step 2: Serialize to XML
         string xmlString = SerializeToXml(priaDocument);
 
-        // Step 4: Validate XML
+        // Step 3: Validate XML
         bool isValid = ValidateXml(xmlString);
         if (isValid)
         {
@@ -101,8 +81,17 @@ class PdfToXmlConverter
         return xmlString;
     }
 
+    public static string ConvertFileToBase64(string filePath)
+    {
+        byte[] fileBytes = File.ReadAllBytes(filePath);
+        return Convert.ToBase64String(fileBytes);
+    }
+
     private PRIA_DOCUMENT_Type GeneratePriaDocument()
     {
+        string pdfFilePath = @"C:\Users\abir\Downloads\noc.tiff";
+        var base64String = ConvertFileToBase64(pdfFilePath);
+
         return new PRIA_DOCUMENT_Type
         {
             GRANTEE =
@@ -133,7 +122,6 @@ class PdfToXmlConverter
             ],
             PARTIES = new()
             {
-                //_ID = "zxcvbnm",
                 _RETURN_TO_PARTY = [
                     new()
                     {
@@ -142,14 +130,14 @@ class PdfToXmlConverter
                             new()
                             {
                                 _ID="eijsijisrojbgoigsjbojs",
-                                
+
                             }
                         ],
-                        NON_PERSON_ENTITY_DETAIL = new() 
+                        NON_PERSON_ENTITY_DETAIL = new()
                         {
                             _ID = "asdaddwefregb"
                         },
-                        CONTACT_DETAIL = new() 
+                        CONTACT_DETAIL = new()
                         {
                             _ID = "asdaddwefregbasdasdas",
                             _Name = "asdasdreg"
@@ -161,7 +149,21 @@ class PdfToXmlConverter
             EXECUTION = new()
             {
                 _ID = "asdaddwasdadasdefregb"
-            }
+            },
+            EMBEDDED_FILE = [
+                new()
+                {
+                    ID = "asasdasdas",
+                    EmbeddedFileType = "TIFF",
+                    EmbeddedFileVersion="1.0",
+                    EmbeddedFileName="DocumentImage.tiff",
+                    FileEncodingType="Base64",
+                    FileDescription="Property Deed Document",
+                    MIMEType="image/tiff",
+                    //PageCount ="1",
+                    //_SequenceIdentifier="1",
+                }
+            ]
         };
     }
 }

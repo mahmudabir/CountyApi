@@ -1,42 +1,56 @@
-﻿using CountySystem.MainModuleService;
-using System.Security;
+﻿using System.Security;
+using CountySystem.MainModuleService;
 
 namespace CountyApi;
 
 class Program
 {
-    private static readonly HttpClient client = new HttpClient();
-
     static async Task Main(string[] args)
     {
         string agentKey = "1";
         string agentPassword = "1";
+        
+        // GetDocumentTypesResponse documentTypesResponse = await GetAllDocumentTypes();
+        string submitPackageResponse = await SubmitPackageAsync(agentKey, agentPassword);
+        
+    }
 
-        PdfToXmlConverter converter = new PdfToXmlConverter();
-        var xmlString = converter.GenerateXmlFromPdf();
-
-        string response = await SubmitPackageAsync(agentKey, agentPassword, xmlString);
-        Console.WriteLine("Response from SubmitPackage API:");
-        Console.WriteLine(response);
+    // Get All Document Types
+    public static async Task<GetDocumentTypesResponse> GetAllDocumentTypes()
+    {
+        ERecordWCFServiceClient countyClient = new ERecordWCFServiceClient();
+        GetDocumentTypesResponse? documentTypeResponse = await countyClient.GetDocumentTypesAsync(new GetDocumentTypesRequest());
+        // var documentTypeResponseJson = JsonSerializer.Serialize(documentTypeResponse.GetDocumentTypesResult);
+        // Console.WriteLine(documentTypeResponseJson);
+        await countyClient.CloseAsync();
+        return documentTypeResponse;
     }
 
     // Method to call the SubmitPackage SOAP API
-    public static async Task<string> SubmitPackageAsync(string agentKey, string agentPassword, string priaPackageXml)
+    public static async Task<string> SubmitPackageAsync(string agentKey, string agentPassword)
     {
+        PdfToXmlConverter converter = new PdfToXmlConverter();
+        var priaPackageXml = converter.GenerateXmlString();
+        
         // Encode the XML string (escape special characters)
         string priaPackage = SecurityElement.Escape(priaPackageXml);
 
         ERecordWCFServiceClient countyClient = new ERecordWCFServiceClient();
-
         var result = await countyClient.SubmitPackageAsync(new SubmitPackageRequest()
         {
             agentKey = agentKey,
             agentPassword = agentPassword,
             priaPackage = priaPackage
         });
+        await countyClient.CloseAsync();
+        
+        Console.WriteLine("Response from SubmitPackage API:");
+        Console.WriteLine(result.SubmitPackageResult);
 
         return result.SubmitPackageResult;
 
+        // HttpClient client = new HttpClient();
+        
         //// SOAP envelope for the SubmitPackage request
         //var soapEnvelope = $@"
         //<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:lan=""Landmark.DistributedServices.ERecord"">
