@@ -1,0 +1,19 @@
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "2.1.0",
+  "ExtendedData": {
+    "inputs": [
+      "https://erecordqa.mypalmbeachclerk.com/MainModuleService.svc"
+    ],
+    "collectionTypes": [
+      "System.Collections.Generic.Dictionary`2",
+      "System.Collections.Generic.List`1"
+    ],
+    "namespaceMappings": [
+      "*, CountySystem.Service.ERecordWCFService"
+    ],
+    "outputFile": "MainModuleService.cs",
+    "targetFramework": "net8.0",
+    "typeReuseMode": "All"
+  }
+}

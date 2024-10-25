@@ -1,0 +1,476 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mismo="http://mismo.org/schema" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#">
+	<xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="SMART_DOCUMENT_xmldsig_core_schema_V_1_02.xsd"/>
+	<xsd:complexType name="MISMO_SIGNATURE_TYPE">
+		<xsd:sequence>
+			<xsd:element name="ELECTRONIC_SIGNATURE" type="MISMO_ELECTRONIC_SIGNATURE_Type" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="FirstName" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>First name of person singing the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature First Name</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="MiddleName" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Middle name of person singing the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature Middle Name</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="LastName" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Last name of person singing the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature Last Name</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="NameSuffix" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Name suffix of person singing the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature Name Suffix</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="UnparsedName" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Unparsed name of person singing the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature Unparsed Name</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SigningCapacityDescription" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>When the person singing the document is other than a named party to the document they are signing in some other capacity, for example the Trustee of a Trust or power of attorney.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signing Capacity Description</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="OrganizationName" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Name of organization the person singing the document represents in the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Organization Name</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="OrganizationPositionDescription" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Position with an organization of person singing the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Organization Position Description</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SignatureDate" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Date that the signature was applied to the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature Date</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SequenceIdentifier" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>When more than one signature is applied a sequence number indicate order.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Sequence Identifier</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SignatureTimeStamp" type="xsd:dateTime">
+			<xsd:annotation>
+				<xsd:documentation>When the date and time when the signature is added to the document.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Sequence Identifier</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="ID" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="SIGNATURE_TEXT_Type">
+		<xsd:attribute name="ID" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="MISMO_ELECTRONIC_SIGNATURE_Type">
+		<xsd:choice>
+			<xsd:element name="SIGNATURE_TEXT" type="SIGNATURE_TEXT_Type"/>
+			<xsd:element name="EMBEDED_SIGNATURE_FILE" type="MISMO_EMBEDDED_FILE_Type"/>
+			<xsd:element name="EXTERNAL_SIGNATURE_FILE" type="MISMO_EXTERNAL_FILE_Type"/>
+			<xsd:element ref="dsig:Signature"/>
+			<xsd:element name="OTHER_SIGNATURE">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:any processContents="skip"/>
+					</xsd:sequence>
+					<xsd:attribute name="ID" type="xsd:ID"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="ElectronicSignatureType" type="ElectronicSignatureTypeEnumerated">
+			<xsd:annotation>
+				<xsd:documentation>The form of the electronic signature.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Electronic Signature Type</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="ElectronicSignatureTypeOtherDescription" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>When the value of ElectronicSignatureType is Other a description of the form.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>string</mismo:DATATYPE>
+					<mismo:CONTEXT>SIGNATURE</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Electronic Signature Type Other Description</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="ID" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="MISMO_DOCUMENT_Type" mixed="true">
+		<xsd:sequence>
+			<xsd:any namespace="##any" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="MISMO_EMBEDDED_FILE_Type">
+		<xsd:sequence>
+			<xsd:element name="DOCUMENT" type="MISMO_DOCUMENT_Type"/>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:ID"/>
+		<xsd:attribute name="EmbeddedFileType" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Identifies the program used to create the embedded file (i.e. Adobe Acrobat).</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Title and Credit Report</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Embedded File Type</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="EmbeddedFileVersion" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Identifies the version of the program used to create the embedded file (i.e. 4.0).</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Title and Credit Report</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Embedded File Version</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="EmbeddedFileName" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Identifies the file name of the embedded file (i.e. CreditReport0001.pdf).</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Title and Credit Report</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Embedded File Name</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="FileEncodingType" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Specifies the type of encoding used on the embedded file (i.e. Base64).</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Title and Credit Report</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Embedded File Encoding Type</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="EmbeddedFileDescription" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Provides additional information about the embedded file, such as the software version that generated the file.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Title and Credit Report</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Embedded File Description</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="MIMEType" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Indicates the Multipurpose Internet Mail Extensions type of the data in the DOCUMENT container. A registered list of these types is available at http://www.isi.edu/in-notes/iana/assignments/media-types/media-types.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Request &amp; Response</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File, Preferred Response</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>MIME Type</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="PageCount" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>The number of pages in the embedded file.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE/>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File, Preferred Response</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Page Count</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SignatureSequenceIdentifier" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>An identifier that designates the order or place assigned to a specific signature form in relation to other signatures of the same individual.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Witness</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Closing</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature Sequence Identifier</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="MISMO_EXTERNAL_FILE_Type">
+		<xsd:attribute name="ID" type="xsd:ID"/>
+		<xsd:attribute name="FileEncodingType" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Specifies the type of encoding used on the embedded file (i.e. Base64).</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Title and Credit Report</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>File Encoding Type</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="FileDescription" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Provides additional information about the file, such as the software version that generated the file.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Title and Credit Report</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>File Reference</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>File Description</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="MIMEType" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Indicates the Multipurpose Internet Mail Extensions type of the data in the DOCUMENT container. A registered list of these types is available at http://www.isi.edu/in-notes/iana/assignments/media-types/media-types.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>Request &amp; Response</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>MIME Type</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="URI" type="xsd:anyURI">
+			<xsd:annotation>
+				<xsd:documentation>Indicates the reference URI that represents the location where the file may be located.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>none provided</mismo:SOURCE>
+					<mismo:DATATYPE>URI</mismo:DATATYPE>
+					<mismo:CONTEXT>Embedded File, Preferred Response</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Flood</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Appraisal</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Title</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>URI</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="PageCount" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>The number of pages included in the external file.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>none provided</mismo:SOURCE>
+					<mismo:DATATYPE>URI</mismo:DATATYPE>
+					<mismo:CONTEXT>Electronic Sigantures</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Page Count</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SignatureSequenceIdentifier" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>An identifier that designates the order or place assigned to a specific signature form in relation to other signatures of the same individual.</xsd:documentation>
+				<xsd:appinfo>
+					<mismo:SOURCE>(not specified)</mismo:SOURCE>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Witness</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Closing</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Signature Sequence Identifier</mismo:LDD_NAME>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:simpleType name="ElectronicSignatureTypeEnumerated">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Text"/>
+			<xsd:enumeration value="Digital"/>
+			<xsd:enumeration value="EncodedEmbeded"/>
+			<xsd:enumeration value="EncodedExternal"/>
+			<xsd:enumeration value="Other"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

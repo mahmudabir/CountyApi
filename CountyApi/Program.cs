@@ -20,8 +20,6 @@ class Program
     {
         ERecordWCFServiceClient countyClient = new ERecordWCFServiceClient();
         GetDocumentTypesResponse? documentTypeResponse = await countyClient.GetDocumentTypesAsync(new GetDocumentTypesRequest());
-        // var documentTypeResponseJson = JsonSerializer.Serialize(documentTypeResponse.GetDocumentTypesResult);
-        // Console.WriteLine(documentTypeResponseJson);
         await countyClient.CloseAsync();
         return documentTypeResponse;
     }
@@ -48,7 +46,8 @@ class Program
         Console.WriteLine(result.SubmitPackageResult);
 
         return result.SubmitPackageResult;
-
+        
+        /*
         // HttpClient client = new HttpClient();
         
         //// SOAP envelope for the SubmitPackage request
@@ -74,6 +73,7 @@ class Program
         //HttpResponseMessage response = await client.PostAsync("https://erecordqa.mypalmbeachclerk.com/MainModuleService.svc/basic", content);
 
         //// Ensure the request was successful and return the response content
-        //return await response.Content.ReadAsStringAsync();
+        //return await response.Content.ReadAsStringAsync();*/
     }
+    
 }

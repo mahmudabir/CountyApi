@@ -1,6 +1,4 @@
-﻿using iText.Pdfa;
-
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
@@ -53,7 +51,6 @@ class PdfToXmlConverter
         return isValid;  // Returns true if valid, false if validation failed
     }
 
-
     public string GenerateXmlString()
     {
         // Step 1: Populate PRIA_DOCUMENT (mapping the extracted data to the class)
@@ -86,7 +83,7 @@ class PdfToXmlConverter
         byte[] fileBytes = File.ReadAllBytes(filePath);
         return Convert.ToBase64String(fileBytes);
     }
-
+    
     private PRIA_DOCUMENT_Type GeneratePriaDocument()
     {
         string pdfFilePath = @"C:\Users\abir\Downloads\noc.tiff";
