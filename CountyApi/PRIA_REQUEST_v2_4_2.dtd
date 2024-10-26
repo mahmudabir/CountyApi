@@ -1,0 +1,132 @@
+<!--	
+	===============================================================================
+	Title                : PRIA Request v2.4.2 DTD
+	File Name            : PRIA_REQUEST_v2_4_2.dtd
+	ELE Version          :                               
+	Creation Date        : 2006-08-16    
+	Modification Date    : 2007-07-11           
+	Modification Date    : 
+	===============================================================================
+	===============================================================================
+	Copyright 2007 Property Records Industry Association (PRIA)
+	All rights reserved.
+	PRIA Copyright Notice, Disclaimer and End-User License
+	Version 1.1 November 2003 (the PRIA License or the License)
+
+This document or software (the Work) is published by the Property Records Industry Association (PRIA).  Copyright © 2006 by PRIA (collectively or individually, a Licensor). All rights reserved.
+Subject to this License, Licensor hereby grants any user of this document or software (Licensee) a worldwide, royalty-free, irrevocable, perpetual, non-exclusive license to reproduce the Work in copies, to prepare proprietary derivative works based upon the Work, to distribute copies of the Work to the public by sale or other transfer of ownership, and to display the Work publicly.
+If the Work is software published by PRIA as codes in source and binary form, the License includes the right for Licensee to distribute copies of, and use, the codes in source and binary forms, with or without modification.
+Any distribution of copies of the Work, or of a derivative work based upon the Work, shall reproduce verbatim the above copyright notice, the entire text of this License and the entire disclaimer below under the following header: This document includes works developed by PRIA and some of its contributors, subject to PRIA License, Version 1.1 November 2003 published at www.pria.us/license.htm or any subsequent applicable version of such License.  Any software application developed by Licensee based upon the Work shall include the following notice in its end user documentation and in its codes: This software product includes software or other works developed by PRIA and some of its contributors, subject to PRIA License, Version 1.1 November 2003 published at www.pria.us/license.htm or any subsequent applicable version of such License.  Upon publication of a derivative work, Licensee shall inform PRIA of such publication and address to PRIA a copy of Licensees derivative work and any relevant documentation.
+PRIA is a trade name of the Property Records Industry Association.  No derivative work or altered versions of a Work by Licensee may be trademarked or labeled in reference to PRIA or any of its trademark(s) or service mark(s) without PRIAs prior written approval.  No reference to PRIA or any of its trademarks by Licensee shall imply endorsement of Licensees activities and products.
+DISCLAIMER:  THIS WORK IS PROVIDED AS IS. PRIA, THE COPYRIGHT HOLDER, THE AUTHORS OF THIS WORK AND ANY STANDARD -SETTING BODY CONTRIBUTORS TO THIS WORK MAKE NO REPRESENTATIONS OR WARRANTIES (i) EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE OR NON-INFRINGEMENT; (ii) THAT THE CONTENTS OF SUCH WORK ARE FREE FROM ERROR OR SUITABLE FOR ANY PURPOSE; NOR THAT IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD-PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.  IN NO EVENT WILL PRIA, THE COPYRIGHT HOLDER. ANY AUTHOR OF THIS WORK, OR THE STANDARD-SETTING BODY CONTRIBUTORS TO THIS WORK BE LIABLE TO ANY PARTY FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES FOR ANY USE OF THIS WORK, INCLUDING, WITHOUT LIMITATION, ANY LOST PROFITS, BUSINESS INTERRUPTION, LOSS OF PROGRAMS OR OTHER DATA ON YOUR INFORMATION HANDLING SYSTEM OR OTHERWISE, EVEN IF PRIA, THE COPYRIGHT HOLDER AND/OR ANY AUTHORS AND/OR ANY STANDARD-SETTING BODY CONTRIBUTORS TO THIS WORK ARE EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+	 ================================================================================
+	 -->
+<!ENTITY % Document-include SYSTEM "PRIA_DOCUMENT_v2_4_1.dtd">
+%Document-include;
+<!ELEMENT REQUEST_GROUP (REQUESTING_PARTY*, RECEIVING_PARTY*, SUBMITTING_PARTY*, REQUEST*, ELECTRONIC_SIGNATURE?)>
+<!ATTLIST REQUEST_GROUP
+	xmlns CDATA #IMPLIED
+>
+
+<!ATTLIST REQUEST_GROUP
+	PRIAVersionIdentifier CDATA #IMPLIED
+>
+<!ELEMENT REQUESTING_PARTY (CONTACT_DETAIL*, PREFERRED_RESPONSE*)>
+
+<!ATTLIST REQUESTING_PARTY
+	_Name CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_Country CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+>
+
+<!ELEMENT RECEIVING_PARTY (CONTACT_DETAIL*)>
+
+<!ATTLIST RECEIVING_PARTY
+	_Name CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	_Identifier CDATA #IMPLIED
+>
+<!ELEMENT SUBMITTING_PARTY (CONTACT_DETAIL*, PREFERRED_RESPONSE*)>
+
+<!ATTLIST SUBMITTING_PARTY
+	_Name CDATA #IMPLIED
+	_StreetAddress CDATA #IMPLIED
+	_StreetAddress2 CDATA #IMPLIED
+	_City CDATA #IMPLIED
+	_State CDATA #IMPLIED
+	_PostalCode CDATA #IMPLIED
+	LoginAccountIdentifier CDATA #IMPLIED
+	LoginAccountPassword CDATA #IMPLIED
+	_Identifier CDATA #IMPLIED
+>
+<!ELEMENT REQUEST (KEY*, PRIA_REQUEST+)>
+
+<!ATTLIST REQUEST
+	InternalAccountIdentifier CDATA #IMPLIED
+	RequestDateTime CDATA #IMPLIED
+>
+<!ELEMENT KEY EMPTY>
+
+<!ATTLIST KEY
+	_Name CDATA #IMPLIED
+	_Value CDATA #IMPLIED
+>
+<!ELEMENT PACKAGE (PRIA_DOCUMENT*, PAYMENT*)>
+
+<!ATTLIST PACKAGE
+	_Identifier CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT PAYMENT (SERVICE_PAYMENT?)>
+
+<!ATTLIST PAYMENT
+	_MethodType (ACH | OnAccount | CreditCard | DebitCard | Other | Voucher | Wire) #IMPLIED
+	_MethodTypeOtherDescription CDATA #IMPLIED
+	_Amount CDATA #IMPLIED
+	_RecorderOnAccountIdentifier CDATA #IMPLIED
+	_RecorderOnAccountMaximumDebitAmount CDATA #IMPLIED
+	_RecorderOnAccountMinimumBalanceAmount CDATA #IMPLIED
+	_AccountIdentifier CDATA #IMPLIED
+	_ReferenceIdentifier CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>
+<!ELEMENT SERVICE_PAYMENT EMPTY>
+
+<!ATTLIST SERVICE_PAYMENT
+	_AccountIdentifier CDATA #IMPLIED
+	_AccountHolderName CDATA #IMPLIED
+	_AccountHolderStreetAddress CDATA #IMPLIED
+	_AccountHolderStreetAddress2 CDATA #IMPLIED
+	_AccountHolderCity CDATA #IMPLIED
+	_AccountHolderState CDATA #IMPLIED
+	_AccountHolderPostalCode CDATA #IMPLIED
+	_AccountHolderTelephoneNumber CDATA #IMPLIED
+	_AccountExpirationDate CDATA #IMPLIED
+	_SecondaryAccountIdentifier CDATA #IMPLIED
+	_MethodType (AmericanExpress | DinersClub | Discover | MasterCard | MasterCardDebit | Other | Visa | VisaDebit) #IMPLIED
+	_MethodTypeOtherDescription CDATA #IMPLIED
+>
+<!ELEMENT RECORDING_TRANSACTION_IDENTIFIER EMPTY>
+
+<!ATTLIST RECORDING_TRANSACTION_IDENTIFIER
+	_Type (CourtCase | Recorder | TitleEscrow | Other) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+	_Value CDATA #IMPLIED
+>
+
+<!ELEMENT PRIA_REQUEST (PACKAGE*, RECORDING_TRANSACTION_IDENTIFIER?)>
+
+<!ATTLIST PRIA_REQUEST
+	_NonRelatedDocumentsIndicator CDATA #IMPLIED
+	_Type (RecordDocuments | Status | FeeQuote | Other) #IMPLIED
+	_TypeOtherDescription CDATA #IMPLIED
+	_SequenceIdentifier CDATA #IMPLIED
+>

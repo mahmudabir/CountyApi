@@ -31,6 +31,9 @@
       <None Update="XmlSchemaDefinitions\SMART_DOCUMENT_xmldsig_core_schema_V_1_02.xsd">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="XmlSchemaDefinitions\PRIA_REQUEST_v2_4_2.xsd">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

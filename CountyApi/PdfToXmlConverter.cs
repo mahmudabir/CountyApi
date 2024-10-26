@@ -65,12 +65,12 @@ class PdfToXmlConverter
         {
             Console.WriteLine("Generated XML is valid.");
             Console.WriteLine(xmlString);
-            File.WriteAllText("..\\..\\..\\xmlString.xml", xmlString);
+            // File.WriteAllText("..\\..\\..\\xmlString.xml", xmlString);
         }
         else
         {
             Console.WriteLine("Generated XML is invalid.");
-            File.Delete("..\\..\\..\\xmlString.xml");
+            // File.Delete("..\\..\\..\\xmlString.xml");
             //throw new Exception("Generated XML is invalid.");
 
         }

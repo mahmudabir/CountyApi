@@ -1,0 +1,1120 @@
+<xs:schema xmlns:mismo="http://mismo.org/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>==============================================================================
+	Title                			: PRIA Request v2.4.2 Zero Delta Schema
+	File Name           	    : PRIA_REQUEST_v2_4_2.xsd
+	ELE Version            :                               
+	Creation Date          : 2006-08-17
+	Modification Date    : 2007-07-11           
+	Modification Date    : 
+	===============================================================================
+	 Copyright 2007 Property Records Industry Association (PRIA)
+	All rights reserved.
+	PRIA Copyright Notice, Disclaimer and End-User License
+	Version 1.1 November 2003 (the PRIA License or the License)
+
+This document or software (the Work) is published by the Property Records Industry Association (PRIA).  Copyright © 2006 by PRIA (collectively or individually, a Licensor). All rights reserved.
+Subject to this License, Licensor hereby grants any user of this document or software (Licensee) a worldwide, royalty-free, irrevocable, perpetual, non-exclusive license to reproduce the Work in copies, to prepare proprietary derivative works based upon the Work, to distribute copies of the Work to the public by sale or other transfer of ownership, and to display the Work publicly.
+If the Work is software published by PRIA as codes in source and binary form, the License includes the right for Licensee to distribute copies of, and use, the codes in source and binary forms, with or without modification.
+Any distribution of copies of the Work, or of a derivative work based upon the Work, shall reproduce verbatim the above copyright notice, the entire text of this License and the entire disclaimer below under the following header: This document includes works developed by PRIA and some of its contributors, subject to PRIA License, Version 1.1 November 2003 published at www.pria.us/license.htm or any subsequent applicable version of such License.  Any software application developed by Licensee based upon the Work shall include the following notice in its end user documentation and in its codes: This software product includes software or other works developed by PRIA and some of its contributors, subject to PRIA License, Version 1.1 November 2003 published at www.pria.us/license.htm or any subsequent applicable version of such License.  Upon publication of a derivative work, Licensee shall inform PRIA of such publication and address to PRIA a copy of Licensees derivative work and any relevant documentation.
+PRIA is a trade name of the Property Records Industry Association.  No derivative work or altered versions of a Work by Licensee may be trademarked or labeled in reference to PRIA or any of its trademark(s) or service mark(s) without PRIAs prior written approval.  No reference to PRIA or any of its trademarks by Licensee shall imply endorsement of Licensees activities and products.
+DISCLAIMER:  THIS WORK IS PROVIDED AS IS. PRIA, THE COPYRIGHT HOLDER, THE AUTHORS OF THIS WORK AND ANY STANDARD -SETTING BODY CONTRIBUTORS TO THIS WORK MAKE NO REPRESENTATIONS OR WARRANTIES (i) EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE OR NON-INFRINGEMENT; (ii) THAT THE CONTENTS OF SUCH WORK ARE FREE FROM ERROR OR SUITABLE FOR ANY PURPOSE; NOR THAT IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD-PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.  IN NO EVENT WILL PRIA, THE COPYRIGHT HOLDER. ANY AUTHOR OF THIS WORK, OR THE STANDARD-SETTING BODY CONTRIBUTORS TO THIS WORK BE LIABLE TO ANY PARTY FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES FOR ANY USE OF THIS WORK, INCLUDING, WITHOUT LIMITATION, ANY LOST PROFITS, BUSINESS INTERRUPTION, LOSS OF PROGRAMS OR OTHER DATA ON YOUR INFORMATION HANDLING SYSTEM OR OTHERWISE, EVEN IF PRIA, THE COPYRIGHT HOLDER AND/OR ANY AUTHORS AND/OR ANY STANDARD-SETTING BODY CONTRIBUTORS TO THIS WORK ARE EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+	 ==============================================================================</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="MISMO_SIGNATURE_Type.xsd"/>
+	<xs:include schemaLocation="PRIA_DOCUMENT_v2_4_1.XSD"/>
+	<xs:element name="REQUEST_GROUP" type="PRIA_REQUEST_GROUP_Type"/>
+	<xs:complexType name="PRIA_KEY_Type">
+		<xs:sequence/>
+		<xs:attribute name="_Name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>A generic placeholder to add key descriptions in transactions.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Request, Response</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Key Name</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_Value" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>A generic placeholder for a value to be associated with a key description for a transaction exchange.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Request, Response</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Key Value</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_PACKAGE_Type">
+		<xs:sequence>
+			<xs:element name="PRIA_DOCUMENT" type="PRIA_DOCUMENT_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PAYMENT" type="PRIA_PAYMENT_Type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="_Identifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>A unique system-assigned identifier (such as an audit trail number) to each package.</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Package Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_SequenceIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>When more than one package is included this indicates the order in which they should be processed</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Package Sequence Indentifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_PAYMENT_Type">
+		<xs:sequence>
+			<xs:element name="SERVICE_PAYMENT" type="PRIA_SERVICE_PAYMENT_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="_MethodType" type="PRIA_PaymentMethodType_Enumerated">
+			<xs:annotation>
+				<xs:documentation>A description of the method of funds transfer to be used for the transaction</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Method Type</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_MethodTypeOtherDescription" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>A description of the type of payment when Other is selected from the enumerated list</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Method Type Other Description</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_Amount" type="PRIA_MISMOMoney">
+			<xs:annotation>
+				<xs:documentation>The total amount of payment being tendered</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>Money</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Amount</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_RecorderOnAccountIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>An alphanumeric designation assigned to the prepaid account to be debited for the payment</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Recorder On Account Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_RecorderOnAccountMaximumDebitAmount" type="PRIA_MISMOMoney">
+			<xs:annotation>
+				<xs:documentation>The maximum dollar amount that can be debited from the prepaid account on any single transaction</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>Money</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Recorder On Account Maximum Debit Amount</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_RecorderOnAccountMinimumBalanceAmount" type="PRIA_MISMOMoney">
+			<xs:annotation>
+				<xs:documentation>The dollar amount at which the system should send a message that the prepaid account needs to be replenished.  It may also trigger the system to discontinue processing documents until more funds are added to the account.</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>Money</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Recorder On Account Minimum Balance Amount</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>An alphanumeric designation assigned to the account that payment will be processed from</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Account Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_ReferenceIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>A unique identifier assigned to each payment transaction for tracking and auditing purposes</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Reference Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_SequenceIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>When more than one payment is tendered, this indicates the order in which they should be processed</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Payment Sequence Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_REQUEST_Type">
+		<xs:sequence>
+			<xs:element name="PACKAGE" type="PRIA_PACKAGE_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RECORDING_TRANSACTION_IDENTIFIER" type="PRIA_RECORDING_TRANSACTION_IDENTIFIER_Type" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="_RelatedDocumentsIndicator" type="PRIA_MISMOIndicatorType">
+			<xs:annotation>
+				<xs:documentation>Indicates whether the documents sent are related to each other.  If "yes", all documents must pass recordability tests for any to be recorded.  If "no", one doucment can fail recordability without preventing the remaining documents from being recorded.</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>Boolean</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>PRIA Request Related Documents Indicator</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_Type" type="PRIA_PRIARequestType_Enumerated">
+			<xs:annotation>
+				<xs:documentation>A description of the action being requested</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>PRIA Request Type</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_TypeOtherDescription" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>A description of the type of request when Other is selcted from the enumerated list</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>PRIA Request Type Other Description</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_SequenceIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>When more than one request is included this indicates the order in which they should be processed</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>PRIA Request Sequence Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_RECEIVING_PARTY_Type">
+		<xs:sequence>
+			<xs:element name="CONTACT_DETAIL" type="PRIA_CONTACT_DETAIL_Type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="_Name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Identifies the name of the intended recipient of the XML message.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Receiving Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Receiving Party Name</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_StreetAddress" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The first line of the receiving partys street address (e.g., 123 Main Street).</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Receiving Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Receiving Party Street Address</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_StreetAddress2" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The second line of the receiving partys street address (e.g., Suite 250).</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Receiving Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Receiving Party Street Address 2</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_City" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The city in which the receiving party is located.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Receiving Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Receiving Party City</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_State" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The state in which the receiving party is located. This is usually entered using the USPS two letter state abbreviation.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Receiving Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Receiving Party State</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_PostalCode" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The 5 or 9 digit postal code in which the receiving party is located.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Receiving Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Receiving Party Postal Code</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_Identifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>An identifier that is assigned to the receiving party as defined by the trading partners involved in the transaction.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Receiving Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Receiving Party Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_RECORDING_TRANSACTION_IDENTIFIER_Type">
+		<xs:sequence/>
+		<xs:attribute name="_Type" type="PRIA_RecordingTransactionIdentifierType_Enumerated">
+			<xs:annotation>
+				<xs:documentation>This enumerated attribute identifies what agency the transaction is intended for</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Recording Transaction Identifier Type</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_TypeOtherDescription" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>A description of the type of transaction when Other is selected in the enumerated list</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Recording Transaction Identifier Type Other Description</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_Value" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The actual identifying alphanumeric entry</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Recording Transaction Identifier Value</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_REQUEST_GROUP_Type">
+		<xs:sequence>
+			<xs:element name="REQUESTING_PARTY" type="PRIA_REQUESTING_PARTY_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RECEIVING_PARTY" type="PRIA_RECEIVING_PARTY_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SUBMITTING_PARTY" type="PRIA_SUBMITTING_PARTY_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="REQUEST" type="REQUEST_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ELECTRONIC_SIGNATURE" type="MISMO_SIGNATURE_TYPE" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="PRIAVersionIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The version of the PRIA Request DTD being utilized</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>PRIA Version Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<!--xs:attribute name="xmlns" type="xs:string"/-->
+	</xs:complexType>
+	<xs:complexType name="REQUEST_Type">
+		<xs:sequence>
+			<xs:element name="KEY" type="PRIA_KEY_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PRIA_REQUEST" type="PRIA_REQUEST_Type" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="InternalAccountIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The account number or identifier assigned by a service provider to a service requestor. The Internal Account Identifier is supplied with request transactions to allow the service provider to identify the billing account to be used.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Request, Requesting Party, Response</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Internal Account Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="RequestDateTime" type="PRIA_MISMODateTime">
+			<xs:annotation>
+				<xs:documentation>A system generated datetime stamp enclosed within each request to identify the initiation time of the request.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>Date/Time</mismo:DATATYPE>
+					<mismo:CONTEXT>Request</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Servicing</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Request Date Time</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_REQUESTING_PARTY_Type">
+		<xs:sequence>
+			<xs:element name="CONTACT_DETAIL" type="PRIA_CONTACT_DETAIL_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PREFERRED_RESPONSE" type="PRIA_PREFERRED_RESPONSE_Type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="_Name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The name of the party initiating the request</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Requesting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Requesting Party Name</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_StreetAddress" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The unstructured (Unparsed) street address of the requesting party (e.g., 123 Main Street).</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Requesting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Requesting Party Street Address</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_StreetAddress2" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The unstructured (Unparsed) street address 2nd division of the requesting party (e.g., Unit 1223).</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Requesting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Requesting Party Street Address 2</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_City" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The city in which the requesting party is located.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Requesting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Requesting Party City</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_State" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The state in which the requesting party is located.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Requesting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Requesting Party State</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_Country" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The name of the country in which the requesting party resides.</xs:documentation>
+				<xs:appinfo>
+					<mismo:HISTORY>
+						<mismo:ADD version="2.4">PRIA</mismo:ADD>
+					</mismo:HISTORY>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT/>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Requesting Party Country</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_PostalCode" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The postal code (zip code in the US) of the requesting party. Zip code may be either 5 or 9 digits.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Requesting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Requesting Party Postal Code</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_SERVICE_PAYMENT_Type">
+		<xs:sequence/>
+		<xs:attribute name="_AccountIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>For credit card transactions this is the account number imprinted on the credit card.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountHolderName" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>For credit card transactions this is the name imprinted on the credit card for credit card transactions.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Holder Name</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountHolderStreetAddress" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The street address line of the account holder address is sometimes required for payment transaction authorization.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Holder Street Address</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountHolderStreetAddress2" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The second street address line of the account holder address is sometimes required for payment transaction authorization.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Holder Street Address 2</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountHolderCity" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The city of the account holder address is sometimes required for payment transaction authorization.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Holder City</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountHolderState" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The state of the account holder address is sometimes required for payment transaction authorization.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Holder State</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountHolderPostalCode" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The postal code of the account holder address is sometimes required for payment transaction authorization.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Holder Postal Code</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountHolderTelephoneNumber" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The telephone number listed for the account holder is sometimes required for payment transaction authorization.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Holder Telephone Number</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_AccountExpirationDate" type="PRIA_MISMODateTime">
+			<xs:annotation>
+				<xs:documentation>For credit card transactions this is the credit card expiration date imprinted on the credit card.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>Date/Time</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Account Expiration Date</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_SecondaryAccountIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>For credit card transactions this is an additional identifier that appears on the credit card in various locations depending on the Credit Card Type.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Secondary Account Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_MethodType" type="PRIA_ServicePaymentMethodTypeEnumerated">
+			<xs:annotation>
+				<xs:documentation>This enumerated attribute identifies the type of credit card or other payment method.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Method Type</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_MethodTypeOtherDescription" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>When Service Payment Method Type is set to Other, enter the description in this data attribute.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Service Payment Method Type Other Description</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="PRIA_SUBMITTING_PARTY_Type">
+		<xs:sequence>
+			<xs:element name="CONTACT_DETAIL" type="PRIA_CONTACT_DETAIL_Type" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PREFERRED_RESPONSE" type="PRIA_PREFERRED_RESPONSE_Type" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="_Name" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Identifies the name of the party submitting the XML message.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Submitting Party Name</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_StreetAddress" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The first line of the submitting partys street address (e.g., 123 Main Street).</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Submitting Party Street Address</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_StreetAddress2" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The second line of the submitting partys street address (e.g., Suite 250).</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Submitting Party Street Address 2</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_City" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The city in which the submitting party is located.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Submitting Party City</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_State" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The state in which the submitting party is located. This is usually entered using the USPS two letter state abbreviation.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Submitting Party State</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_PostalCode" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>The 5 or 9 digit postal code in which the submitting party is located.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Submitting Party Postal Code</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="LoginAccountIdentifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>User id used to authenticate requesting party to the vendor.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Request, Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Login Account Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="LoginAccountPassword" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Password used to authenticate requesting party to the vendor.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Request, Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Service ordering</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Login Account Password</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="_Identifier" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Provides a means by which an intermediary party to a service request can be identified.</xs:documentation>
+				<xs:appinfo>
+					<mismo:DATATYPE>String</mismo:DATATYPE>
+					<mismo:CONTEXT>Submitting Party</mismo:CONTEXT>
+					<mismo:PROCESSES>
+						<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>MI</mismo:PROCESS_AREA>
+						<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+					</mismo:PROCESSES>
+					<mismo:LDD_NAME>Submitting Party Identifier</mismo:LDD_NAME>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="PRIA_PRIARequestType_Enumerated">
+		<xs:annotation>
+			<xs:appinfo>
+				<mismo:HISTORY>
+					<mismo:ADD version="2.4">PRIA</mismo:ADD>
+				</mismo:HISTORY>
+				<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+				<mismo:CONTEXT/>
+				<mismo:PROCESSES>
+					<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+				</mismo:PROCESSES>
+				<mismo:LDD_NAME>PRIA Request Type</mismo:LDD_NAME>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RecordDocuments">
+				<xs:annotation>
+					<xs:documentation>The request is that documents be recorded</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StatusUpdate">
+				<xs:annotation>
+					<xs:documentation>The request is for a status update on a previously submitted request</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FeeQuote">
+				<xs:annotation>
+					<xs:documentation>The request is for the county to provide a fee quote based on information contained in the request</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation>The request is for an action not listed in the enumerated list</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PRIA_PaymentMethodType_Enumerated">
+		<xs:annotation>
+			<xs:appinfo>
+				<mismo:HISTORY>
+					<mismo:ADD version="2.4">PRIA</mismo:ADD>
+				</mismo:HISTORY>
+				<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+				<mismo:CONTEXT/>
+				<mismo:PROCESSES>
+					<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+				</mismo:PROCESSES>
+				<mismo:LDD_NAME>Payment Method Type</mismo:LDD_NAME>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACH">
+				<xs:annotation>
+					<xs:documentation>An Automated Clearing House transaction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OnAccount">
+				<xs:annotation>
+					<xs:documentation>A prepaid account is to be charged for the transaction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CreditCard">
+				<xs:annotation>
+					<xs:documentation>A credit card is to be charged for the transaction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DebitCard">
+				<xs:annotation>
+					<xs:documentation>A debit card is to be debited for the transaction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation>A form of payment not included in the enumerated list is to be used for the transaction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Voucher">
+				<xs:annotation>
+					<xs:documentation>A payment voucher is to be used for the transaction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Wire">
+				<xs:annotation>
+					<xs:documentation>A wire transfer transaction</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PRIA_ServicePaymentMethodTypeEnumerated">
+		<xs:annotation>
+			<xs:appinfo>
+				<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+				<mismo:CONTEXT>Service Payment</mismo:CONTEXT>
+				<mismo:PROCESSES>
+					<mismo:PROCESS_AREA>Credit Reporting</mismo:PROCESS_AREA>
+					<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+				</mismo:PROCESSES>
+				<mismo:LDD_NAME>Service Payment Method Type</mismo:LDD_NAME>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AmericanExpress"/>
+			<xs:enumeration value="DinersClub"/>
+			<xs:enumeration value="Discover"/>
+			<xs:enumeration value="MasterCard"/>
+			<xs:enumeration value="MasterCardDebit"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="Visa"/>
+			<xs:enumeration value="VisaDebit"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PRIA_RecordingTransactionIdentifierType_Enumerated">
+		<xs:annotation>
+			<xs:appinfo>
+				<mismo:HISTORY>
+					<mismo:ADD version="2.4">PRIA</mismo:ADD>
+				</mismo:HISTORY>
+				<mismo:DATATYPE>Enumerated</mismo:DATATYPE>
+				<mismo:CONTEXT/>
+				<mismo:PROCESSES>
+					<mismo:PROCESS_AREA>PRIA</mismo:PROCESS_AREA>
+				</mismo:PROCESSES>
+				<mismo:LDD_NAME>Recording Transaction Identifier Type</mismo:LDD_NAME>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CourtCase">
+				<xs:annotation>
+					<xs:documentation>A transaction in the Clerk of Circuit Court's office</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Recorder">
+				<xs:annotation>
+					<xs:documentation>A transaction in the County Recorder's office</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TitleEscrow">
+				<xs:annotation>
+					<xs:documentation>A transaction with a Title Company or Escrow Agent</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation>A transaction with an agency not included in the enumerated list</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

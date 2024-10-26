@@ -26,10 +26,10 @@ public class CountyService
     // Method to call the SubmitPackage SOAP API
     public async Task<string> SubmitPackageAsync(string agentKey, string agentPassword)
     {
-        var priaPackageXml = _priaService.GenerateXmlString();
+        var priaPackage = _priaService.GenerateXmlString(_priaService.GeneratePriaDocument(), true);
         
-        // Encode the XML string (escape special characters)
-        string priaPackage = SecurityElement.Escape(priaPackageXml);
+        // // Encode the XML string (escape special characters)
+        // string priaPackage = SecurityElement.Escape(priaPackageXml);
 
         ERecordWCFServiceClient countyClient = new ERecordWCFServiceClient();
         var result = await countyClient.SubmitPackageAsync(new SubmitPackageRequest()

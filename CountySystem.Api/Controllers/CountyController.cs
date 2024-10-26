@@ -13,11 +13,25 @@ public class CountyController(PriaService priaService, CountyService countyServi
         var documentTypes = await countyService.GetAllDocumentTypes();
         return Ok(documentTypes);
     }
-    
+
     [HttpPost("submit-pria-package")]
-    public async Task<IActionResult> ValidatePriaStandardXml()
+    public async Task<IActionResult> SubmitPriaPackage()
     {
-        var xmlString = priaService.GenerateXmlString(priaService.GeneratePriaDocument());
+        var xmlString = priaService.GenerateXmlString(priaService.GeneratePriaDocument(), true);
+
+        var response = await countyService.SubmitPackageAsync("1", "1");
+
+        return Ok(new
+        {
+            CountyResponse = response,
+            PriaPackage = xmlString
+        });
+    }
+
+    [HttpPost("generate-pria-package")]
+    public async Task<IActionResult> GeneraetPriaStandardXml([FromQuery] bool isEscaped = false)
+    {
+        var xmlString = priaService.GenerateXmlString(priaService.GeneratePriaDocument(), isEscaped);
         return Ok(xmlString);
     }
 
@@ -47,8 +61,8 @@ public class CountyController(PriaService priaService, CountyService countyServi
             Message = message
         });
     }
-    
-    
+
+
     [HttpPost("validate-xml-string")]
     public async Task<IActionResult> ValidatePriaStandardXmlString(string xmlString)
     {
@@ -69,5 +83,4 @@ public class CountyController(PriaService priaService, CountyService countyServi
             Message = message
         });
     }
-
 }

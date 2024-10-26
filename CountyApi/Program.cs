@@ -1,4 +1,5 @@
 ﻿using System.Security;
+using System.Text;
 using CountySystem.MainModuleService;
 
 namespace CountyApi;
@@ -33,47 +34,51 @@ class Program
         // Encode the XML string (escape special characters)
         string priaPackage = SecurityElement.Escape(priaPackageXml);
 
-        ERecordWCFServiceClient countyClient = new ERecordWCFServiceClient();
-        var result = await countyClient.SubmitPackageAsync(new SubmitPackageRequest()
-        {
-            agentKey = agentKey,
-            agentPassword = agentPassword,
-            priaPackage = priaPackage
-        });
-        await countyClient.CloseAsync();
+        priaPackageXml = File.ReadAllText("..\\..\\..\\xmlString.xml");
+        priaPackage = SecurityElement.Escape(priaPackageXml);
+        File.WriteAllText("..\\..\\..\\xmlString_new.xml", priaPackage);
+
+        // ERecordWCFServiceClient countyClient = new ERecordWCFServiceClient();
+        // var result = await countyClient.SubmitPackageAsync(new SubmitPackageRequest()
+        // {
+        //     agentKey = agentKey,
+        //     agentPassword = agentPassword,
+        //     priaPackage = priaPackage
+        // });
+        // await countyClient.CloseAsync();
+        //
+        // Console.WriteLine("Response from SubmitPackage API:");
+        // Console.WriteLine(result.SubmitPackageResult);
         
-        Console.WriteLine("Response from SubmitPackage API:");
-        Console.WriteLine(result.SubmitPackageResult);
-
-        return result.SubmitPackageResult;
+        return "result.SubmitPackageResult";
         
-        /*
-        // HttpClient client = new HttpClient();
         
-        //// SOAP envelope for the SubmitPackage request
-        //var soapEnvelope = $@"
-        //<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:lan=""Landmark.DistributedServices.ERecord"">
-        //   <soapenv:Header/>
-        //   <soapenv:Body>
-        //      <lan:SubmitPackage>
-        //         <lan:agentKey>{agentKey}</lan:agentKey>
-        //         <lan:agentPassword>{agentPassword}</lan:agentPassword>
-        //         <lan:priaPackage>{priaPackage}</lan:priaPackage>
-        //      </lan:SubmitPackage>
-        //   </soapenv:Body>
-        //</soapenv:Envelope>";
-
-        //var content = new StringContent(soapEnvelope, Encoding.UTF8, "text/xml");
-
-        //// Set SOAPAction header as required by the service
-        //client.DefaultRequestHeaders.Clear();
-        //client.DefaultRequestHeaders.Add("SOAPAction", "\"Landmark.DistributedServices.ERecord/IERecordWCFService/SubmitPackage\"");
-
-        //// Send POST request to the SOAP endpoint
-        //HttpResponseMessage response = await client.PostAsync("https://erecordqa.mypalmbeachclerk.com/MainModuleService.svc/basic", content);
-
-        //// Ensure the request was successful and return the response content
-        //return await response.Content.ReadAsStringAsync();*/
+        //  HttpClient client = new HttpClient();
+        //
+        // // SOAP envelope for the SubmitPackage request
+        // var soapEnvelope = $@"
+        // <soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:lan=""Landmark.DistributedServices.ERecord"">
+        //    <soapenv:Header/>
+        //    <soapenv:Body>
+        //       <lan:SubmitPackage>
+        //          <lan:agentKey>{agentKey}</lan:agentKey>
+        //          <lan:agentPassword>{agentPassword}</lan:agentPassword>
+        //          <lan:priaPackage>{priaPackage}</lan:priaPackage>
+        //       </lan:SubmitPackage>
+        //    </soapenv:Body>
+        // </soapenv:Envelope>";
+        //
+        // var content = new StringContent(soapEnvelope, Encoding.UTF8, "text/xml");
+        //
+        // // Set SOAPAction header as required by the service
+        // client.DefaultRequestHeaders.Clear();
+        // client.DefaultRequestHeaders.Add("SOAPAction", "\"Landmark.DistributedServices.ERecord/IERecordWCFService/SubmitPackage\"");
+        //
+        // // Send POST request to the SOAP endpoint
+        // HttpResponseMessage response = await client.PostAsync("https://erecordqa.mypalmbeachclerk.com/MainModuleService.svc/basic", content);
+        //
+        // // Ensure the request was successful and return the response content
+        // return await response.Content.ReadAsStringAsync();
     }
     
 }
