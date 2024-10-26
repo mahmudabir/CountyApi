@@ -80,7 +80,7 @@ public class PriaService
 
     public PRIA_REQUEST_GROUP_Type GeneratePriaDocument()
     {
-        string pdfFilePath = @"C:\Users\abir\Downloads\noc.pdf";
+        string pdfFilePath = @"C:\noc.pdf";
         var base64String = ConvertFileToBase64(pdfFilePath);
 
         var priaDocument = new PRIA_DOCUMENT_Type
@@ -247,7 +247,7 @@ public class PriaService
                     EmbeddedFileType = "PDF",
                     EmbeddedFileVersion = "1.0",
                     EmbeddedFileName = "noc.pdf",
-                    FileEncodingType = "Base64",
+                    FileEncodingType = "base64",
                     FileDescription = "Notice of Commencement",
                     MIMEType = "application/pdf",
                     // DOCUMENT = base64String
